@@ -32,7 +32,7 @@ jobs:
     - name: Test
       run: |
         pwd && tree .
-        cd build/bin
+        cd Build_Dir
         ./sfml_actions_test
       env:
         DISPLAY: :99
