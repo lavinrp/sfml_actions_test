@@ -17,7 +17,7 @@ jobs:
         submodules: 'true'
     - name: setup environment
       run: |
-        sudo apt-get install valgrind libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev xvfb tree
+        sudo apt-get install valgrind libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev xvfb
     - name: Build
       run: |
         mkdir Build_Dir
@@ -31,8 +31,14 @@ jobs:
 
     - name: Test
       run: |
-        pwd && tree .
         cd Build_Dir
         ./sfml_actions_test
+      env:
+        DISPLAY: :99
+
+    - name: Valgrind
+      run: |
+        cd Build_Dir
+        valgrind ./sfml_actions_test
       env:
         DISPLAY: :99
