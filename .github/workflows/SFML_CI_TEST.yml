@@ -18,8 +18,7 @@ jobs:
     - name: setup environment
       run: |
         sudo apt-get install valgrind libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev xvfb
-        sudo add-apt-repository ppa:ubuntu-x-swat/updates
-        sudo apt-get dist-upgrade
+        sudo ldconfig -p | grep -i gl.so
     - name: Build
       run: |
         mkdir Build_Dir
