@@ -19,6 +19,11 @@ jobs:
       run: |
         sudo apt-get install valgrind libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev xvfb
         sudo ldconfig -p | grep -i gl.so
+        sudo mv /usr/lib/x86_64-linux-gnu/libGL.so.1 /usr/lib/x86_64-linux-gnu/libGL.so.1.ORIGINAL
+        sudo mv /usr/lib/x86_64-linux-gnu/libGL.so.1.ORIGINAL /usr/lib/x86_64-linux-gnu/libGL.so.1
+        sudo mv /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libGL.so.ORIGINAL
+        sudo mv /usr/lib/x86_64-linux-gnu/libGL.so.ORIGINAL /usr/lib/x86_64-linux-gnu/libGL.so
+
     - name: Build
       run: |
         mkdir Build_Dir
