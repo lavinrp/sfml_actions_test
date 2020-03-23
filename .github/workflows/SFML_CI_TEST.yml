@@ -29,7 +29,7 @@ jobs:
 
     - name: setup Xvfb
       run: |
-        sudo apt install xvfb
+        sudo apt install xvfb x11-utils
         Xvfb :99 &
 
     - name: Test
