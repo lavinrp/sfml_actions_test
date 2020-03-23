@@ -21,11 +21,11 @@ jobs:
         sudo apt-get install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev
         
     - name: Build Simple SFML project
-       run: |
-         mkdir Build_Dir
-         cd Build_Dir/
-         cmake ../ -DBUILD_SHARED_LIBS=OFF
-         make
+      run: |
+        mkdir Build_Dir
+        cd Build_Dir/
+        cmake ../ -DBUILD_SHARED_LIBS=OFF
+        make
 
     - name: setup Xvfb
       run: |
