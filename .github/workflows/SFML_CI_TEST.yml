@@ -19,13 +19,14 @@ jobs:
       run: |
         sudo apt-get install valgrind libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev xvfb
         sudo apt-get install gedit
+        sudo apt-get install libxrender1 libxtst6 libxi6 
 
-    - name: Build
-      run: |
-        mkdir Build_Dir
-        cd Build_Dir/
-        cmake ../ -DBUILD_SHARED_LIBS=OFF
-        make
+    # name: Build
+    #  run: |
+    #    mkdir Build_Dir
+    #    cd Build_Dir/
+    #    cmake ../ -DBUILD_SHARED_LIBS=OFF
+    #    make
 
     - name: setup Xvfb
       run: |
@@ -38,16 +39,17 @@ jobs:
         DISPLAY: :99
     
 
-    - name: Test
-      run: |
-        cd Build_Dir
-        ./sfml_actions_test
-      env:
-        DISPLAY: :99
-
-    - name: Valgrind
-      run: |
-        cd Build_Dir
-        valgrind ./sfml_actions_test
-      env:
-        DISPLAY: :99
+    #- name: Test
+    #  run: |
+    #    cd Build_Dir
+    #    ./sfml_actions_test
+    #  env:
+    #    DISPLAY: :99
+    #
+    #- name: Valgrind
+    #  run: |
+    #    cd Build_Dir
+    #    valgrind ./sfml_actions_test
+    #  env:
+    #    DISPLAY: :99
+    #
