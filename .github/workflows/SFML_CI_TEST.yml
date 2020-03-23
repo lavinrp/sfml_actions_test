@@ -30,14 +30,14 @@ jobs:
     - name: setup Xvfb
       run: |
         sudo apt install xvfb x11-utils
-        Xvfb :99 &
+    #    Xvfb :99 &
 
     - name: Test
       run: |
         cd Build_Dir
-        ./sfml_actions_test
-      env:
-        DISPLAY: :99
+        xvfb-run ./sfml_actions_test
+    #  env:
+    #    DISPLAY: :99
     
     - name: Valgrind
       run: |
