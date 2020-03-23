@@ -15,41 +15,35 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: 'true'
-    - name: setup environment
-      run: |
-        sudo apt-get install valgrind libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev xvfb
-        sudo apt-get install gedit
-        sudo apt-get install libxrender1 libxtst6 libxi6 
 
-    # name: Build
-    #  run: |
-    #    mkdir Build_Dir
-    #    cd Build_Dir/
-    #    cmake ../ -DBUILD_SHARED_LIBS=OFF
-    #    make
+    - name: setup sfml deps
+      run: |
+        sudo apt-get install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev
+        
+    - name: Build Simple SFML project
+       run: |
+         mkdir Build_Dir
+         cd Build_Dir/
+         cmake ../ -DBUILD_SHARED_LIBS=OFF
+         make
 
     - name: setup Xvfb
       run: |
+        sudo apt install xvfb
         Xvfb :99 &
 
-    - name: test with gedit
+    - name: Test
       run: |
-        gedit test.text &
+        cd Build_Dir
+        ./sfml_actions_test
       env:
         DISPLAY: :99
     
-
-    #- name: Test
-    #  run: |
-    #    cd Build_Dir
-    #    ./sfml_actions_test
-    #  env:
-    #    DISPLAY: :99
-    #
-    #- name: Valgrind
-    #  run: |
-    #    cd Build_Dir
-    #    valgrind ./sfml_actions_test
-    #  env:
-    #    DISPLAY: :99
-    #
+    - name: Valgrind
+      run: |
+        sudo apt install valgrind
+        cd Build_Dir
+        valgrind ./sfml_actions_test
+      env:
+        DISPLAY: :99
+    
