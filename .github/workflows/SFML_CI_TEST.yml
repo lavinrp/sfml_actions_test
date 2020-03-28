@@ -35,6 +35,7 @@ jobs:
 
     - name: Test
       run: |
+        sudo rmmod nvidia
         sudo ldconfig -p | grep -i gl.so
         echo "Start runnings SFML"
         cd Build_Dir
