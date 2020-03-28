@@ -36,7 +36,7 @@ jobs:
     - name: Test
       run: |
         cd Build_Dir
-        xvfb-run ./sfml_actions_test
+        ./sfml_actions_test
       env:
         DISPLAY: :99
     
