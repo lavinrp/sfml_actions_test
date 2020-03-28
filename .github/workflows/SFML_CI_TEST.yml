@@ -23,7 +23,7 @@ jobs:
         sudo apt install libx11-dev xorg-dev libglu1-mesa-dev freeglut3-dev libglew1.5 libglew1.5-dev libglu1-mesa libgl1-mesa-glx libgl1-mesa-dev
         sudo apt install libpthread-stubs0-dev libxrandr-dev libfreetype6-dev libopenal-dev libudev-dev libvorbis-dev libflac-dev
         sudo apt install libgl1-mesa-dri
-        sudo apt install mesa-utils nvidia-driver nvidia-headless-435
+        sudo apt install mesa-utils nvidia-driver-435 nvidia-headless-435
         
     - name: Build Simple SFML project
       run: |
