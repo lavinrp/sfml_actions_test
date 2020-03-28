@@ -36,6 +36,7 @@ jobs:
     - name: Test
       run: |
         sudo ldconfig -p | grep -i gl.so
+        echo "Start runnings SFML"
         cd Build_Dir
         ./sfml_actions_test
       env:
