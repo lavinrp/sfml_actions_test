@@ -35,10 +35,12 @@ jobs:
 
     - name: Test
       run: |
+        sudo ldconfig -p | grep -i gl.so
         cd Build_Dir
         ./sfml_actions_test
       env:
         DISPLAY: :99
+        LIBGL_DEBUG: verbose glxgears
     
     - name: Valgrind
       run: |
