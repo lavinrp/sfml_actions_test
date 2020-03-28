@@ -18,6 +18,8 @@ jobs:
 
     - name: setup environment
       run: |
+        sudo apt update
+        sudo apt upgrade
         sudo apt install libx11-dev xorg-dev libglu1-mesa-dev freeglut3-dev libglew1.5 libglew1.5-dev libglu1-mesa libgl1-mesa-glx libgl1-mesa-dev
         sudo apt install libpthread-stubs0-dev libxrandr-dev libfreetype6-dev libopenal-dev libudev-dev libvorbis-dev libflac-dev
         
@@ -35,7 +37,6 @@ jobs:
 
     - name: Test
       run: |
-        sudo rmmod nvidia
         sudo ldconfig -p | grep -i gl.so
         echo "Start runnings SFML"
         cd Build_Dir
