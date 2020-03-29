@@ -18,12 +18,8 @@ jobs:
 
     - name: setup environment
       run: |
-        sudo apt update
-        sudo apt upgrade
         sudo apt install libx11-dev xorg-dev libglu1-mesa-dev freeglut3-dev libglew1.5 libglew1.5-dev libglu1-mesa libgl1-mesa-glx libgl1-mesa-dev
         sudo apt install libpthread-stubs0-dev libxrandr-dev libfreetype6-dev libopenal-dev libudev-dev libvorbis-dev libflac-dev
-        sudo apt install libgl1-mesa-dri
-        sudo apt install mesa-utils nvidia-driver-435 nvidia-headless-435
         
     - name: Build Simple SFML project
       run: |
@@ -32,28 +28,27 @@ jobs:
         cmake ../ -DBUILD_SHARED_LIBS=OFF
         make
 
-    - name: setup Xvfb
-      run: |
-        sudo apt install xvfb x11-utils libxkbcommon-x11-0
-        Xvfb :99 &
-
-    - name: Test
-      run: |
-        sudo ldconfig -p | grep -i gl.so
-        echo "Start runnings SFML"
-        cd Build_Dir
-        ./sfml_actions_test
-      env:
-        DISPLAY: :99
-        LIBGL_DEBUG: verbose glxgears
-    
-    - name: Valgrind
-      run: |
-        sudo apt install valgrind
-        cd Build_Dir
-        valgrind ./sfml_actions_test
-      env:
-        DISPLAY: :99
+    #- name: setup Xvfb
+    #  run: |
+    #    sudo apt install xvfb x11-utils libxkbcommon-x11-0
+    #    Xvfb :99 &
+    #- name: Test
+    #  run: |
+    #    sudo ldconfig -p | grep -i gl.so
+    #    echo "Start runnings SFML"
+    #    cd Build_Dir
+    #    ./sfml_actions_test
+    #  env:
+    #    DISPLAY: :99
+    #    LIBGL_DEBUG: verbose glxgears
+    #
+    #- name: Valgrind
+    #  run: |
+    #    sudo apt install valgrind
+    #    cd Build_Dir
+    #    valgrind ./sfml_actions_test
+    #  env:
+    #    DISPLAY: :99
     
   build_windows:
     runs-on: windows-latest
