@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build_linux:
 
     runs-on: ubuntu-latest
     
@@ -55,3 +55,23 @@ jobs:
       env:
         DISPLAY: :99
     
+  build_windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'true'
+        
+    - name: Build Simple SFML project
+      run: |
+        mkdir Build_Dir
+        cd Build_Dir/
+        cmake ../ -DBUILD_SHARED_LIBS=OFF
+        cmake --build . --config=DEBUG
+        cd ..
+
+    - name: Test
+      run: |
+        cd Build_Dir
+        ./sfml_actions_test
