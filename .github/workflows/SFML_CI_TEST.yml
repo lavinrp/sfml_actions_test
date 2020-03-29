@@ -63,10 +63,10 @@ jobs:
         mkdir Build_Dir
         cd Build_Dir/
         cmake ../ -DBUILD_SHARED_LIBS=OFF
-        cmake --build . --config=DEBUG
+        cmake --build . --config Debug
         cd ..
 
     - name: Test
       run: |
-        cd Build_Dir
+        cd Build_Dir/Debug
         .\sfml_actions_test.exe
