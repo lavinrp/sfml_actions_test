@@ -69,4 +69,4 @@ jobs:
     - name: Test
       run: |
         cd Build_Dir
-        ./sfml_actions_test
+        .\sfml_actions_test.exe
